@@ -15,8 +15,8 @@ export function Account() {
             <EditAccount />
             <hr />
 
-            <MultiFactorAuthentication />
-            <hr />
+            {/* <MultiFactorAuthentication />
+            <hr /> */}
 
             <AccountManagement />
             <hr />

@@ -82,7 +82,8 @@ const TRUSTED_HOSTS = [
     "rvlt.gg",
 ];
 
-const REMOTE = "https://rvlt.gg";
+// const REMOTE = "https://rvlt.gg";
+const REMOTE = "https://discover.somods.com";
 
 export default function Discover() {
     const state = useApplicationState();
