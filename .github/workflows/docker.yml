@@ -83,7 +83,7 @@ jobs:
               id: meta
               uses: docker/metadata-action@v3
               with:
-                  images: revoltchat/client, ghcr.io/revoltchat/client
+                  images: tanghengzhi/revite, ghcr.io/somods/client
             - name: Login to DockerHub
               uses: docker/login-action@v1
               with:
