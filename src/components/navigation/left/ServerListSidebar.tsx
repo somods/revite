@@ -19,6 +19,13 @@ export default observer(() => {
     const state = useApplicationState();
     const { server: server_id } = useParams<{ server?: string }>();
 
+    console.log(
+        111,
+        import.meta.env.VITE_API_URL,
+        import.meta.env.VITE_SOMODS_API_URL,
+        IS_REVOLT,
+    );
+
     const createServer = useCallback(
         () =>
             modalController.push({
