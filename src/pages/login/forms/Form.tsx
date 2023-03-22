@@ -122,7 +122,8 @@ export const Form = observer(({ page, callback }: Props) => {
                 });
             } else {
                 await callback(data);
-                setSuccess(data.email);
+                // setSuccess(data.email);
+                setSuccess(data.phone_number);
             }
         } catch (err) {
             onError(err);
@@ -150,11 +151,16 @@ export const Form = observer(({ page, callback }: Props) => {
         phone_number: string;
         sms_captcha: string;
     }) => {
+        setGlobalError(undefined);
+        if (!data.phone_number) {
+            return setError("phone_number", {
+                type: "",
+                message: "InvalidPhoneNumber",
+            });
+        }
         axios({
             method: "post",
-            url: `${
-                import.meta.env.VITE_SOMODS_API_URL
-            }/api/auth/account/sms_captcha`,
+            url: `${import.meta.env.VITE_API_URL}/auth/account/sms_captcha`,
             data,
         })
             .then(() => {

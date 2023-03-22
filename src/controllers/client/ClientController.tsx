@@ -207,14 +207,7 @@ class ClientController {
         }
 
         // Try to login with given credentials
-        // let session = await this.apiClient.api.post("/auth/session/login", {
-        //     ...credentials,
-        //     friendly_name,
-        // });
-        const apiClient = new Client({
-            apiURL: import.meta.env.VITE_SOMODS_API_URL,
-        });
-        let session = await apiClient.api.post("/auth/session/login", {
+        let session = await this.apiClient.api.post("/auth/session/login", {
             ...credentials,
             friendly_name,
         });

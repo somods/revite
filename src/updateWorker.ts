@@ -111,7 +111,9 @@ async function checkVersion() {
     }
 }
 
-if (import.meta.env.VITE_API_URL === "https://api.revolt.chat") {
+// if (import.meta.env.VITE_API_URL === "https://api.revolt.chat") {
+// TODO:
+if (import.meta.env.VITE_API_URL === "https://somods.com") {
     // Check for critical updates hourly
     schedule();
     checkVersion();
