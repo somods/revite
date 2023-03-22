@@ -23,8 +23,10 @@ import { isTouchscreenDevice } from "../../lib/isTouchscreenDevice";
 
 import { useApplicationState } from "../../mobx/State";
 
-import wideSVG from "/assets/wide.svg";
+// import wideSVG from "/assets/wide.svg";
+import wideSVG from "/assets/WechatIMG73.png";
 
+// import wideSVG from "/assets/WechatIMG73.png";
 import { PageHeader } from "../../components/ui/Header";
 import { useClient } from "../../controllers/client/ClientController";
 import { modalController } from "../../controllers/modals/ModalController";
@@ -51,7 +53,7 @@ export default observer(() => {
         state.settings.set("appearance:seasonal", !seasonalTheme);
 
     const isDecember = !isTouchscreenDevice && new Date().getMonth() === 11;
-    const isOctober = !isTouchscreenDevice && new Date().getMonth() === 9
+    const isOctober = !isTouchscreenDevice && new Date().getMonth() === 9;
     const snowflakes = useMemo(() => {
         const flakes: string[] = [];
 

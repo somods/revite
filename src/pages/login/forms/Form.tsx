@@ -1,10 +1,11 @@
+import axios from "axios";
 import { observer } from "mobx-react-lite";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
 import styles from "../Login.module.scss";
 import { Text } from "preact-i18n";
-import { useState } from "preact/hooks";
+import { useState, useEffect, useRef } from "preact/hooks";
 
 import { Button, Category, Preloader, Tip } from "@revoltchat/ui";
 
@@ -40,6 +41,8 @@ function getInviteCode() {
 interface FormInputs {
     email: string;
     password: string;
+    phone_number: string;
+    sms_captcha: string;
     invite: string;
 }
 
@@ -51,13 +54,16 @@ export const Form = observer(({ page, callback }: Props) => {
     const [error, setGlobalError] = useState<string | undefined>(undefined);
     const [captcha, setCaptcha] = useState<CaptchaProps | undefined>(undefined);
 
-    const { handleSubmit, register, errors, setError } = useForm<FormInputs>({
-        defaultValues: {
-            email: "",
-            password: "",
-            invite: getInviteCode(),
-        },
-    });
+    const { handleSubmit, register, errors, setError, getValues } =
+        useForm<FormInputs>({
+            defaultValues: {
+                // email: "",
+                // password: "",
+                phone_number: "",
+                sms_captcha: "",
+                invite: getInviteCode(),
+            },
+        });
 
     async function onSubmit(data: FormInputs) {
         setGlobalError(undefined);
@@ -67,11 +73,25 @@ export const Form = observer(({ page, callback }: Props) => {
             setLoading(false);
 
             const error = takeError(err);
+            // switch (error) {
+            //     case "email_in_use":
+            //         return setError("email", { type: "", message: error });
+            //     case "unknown_user":
+            //         return setError("email", { type: "", message: error });
+            //     case "invalid_invite":
+            //         return setError("invite", { type: "", message: error });
+            // }
             switch (error) {
                 case "email_in_use":
-                    return setError("email", { type: "", message: error });
+                    return setError("phone_number", {
+                        type: "",
+                        message: error,
+                    });
                 case "unknown_user":
-                    return setError("email", { type: "", message: error });
+                    return setError("phone_number", {
+                        type: "",
+                        message: error,
+                    });
                 case "invalid_invite":
                     return setError("invite", { type: "", message: error });
             }
@@ -108,6 +128,42 @@ export const Form = observer(({ page, callback }: Props) => {
             onError(err);
         }
     }
+
+    // count down
+    const [time, setTime] = useState(0);
+    const timer = useRef(null);
+    useEffect(() => {
+        timer.current && clearInterval(timer.current);
+        return () => timer.current && clearInterval(timer.current);
+    }, []);
+
+    useEffect(() => {
+        if (time === 60)
+            timer.current = setInterval(() => setTime((time) => --time), 1000);
+        else if (time === 0) timer.current && clearInterval(timer.current);
+    }, [time]);
+    /**
+     *  get captcha
+     * @param data data
+     */
+    const getSmsCaptcha = async (data: {
+        phone_number: string;
+        sms_captcha: string;
+    }) => {
+        axios({
+            method: "post",
+            url: `${
+                import.meta.env.VITE_SOMODS_API_URL
+            }/api/auth/account/sms_captcha`,
+            data,
+        })
+            .then(() => {
+                setTime(60);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
 
     if (typeof success !== "undefined") {
         return (
@@ -175,7 +231,7 @@ export const Form = observer(({ page, callback }: Props) => {
                         onSubmit,
                     ) as unknown as JSX.GenericEventHandler<HTMLFormElement>
                 }>
-                {page !== "reset" && (
+                {/* {page !== "reset" && (
                     <FormField
                         type="email"
                         register={register}
@@ -192,6 +248,45 @@ export const Form = observer(({ page, callback }: Props) => {
                         showOverline
                         error={errors.password?.message}
                     />
+                )} */}
+                {page !== "reset" && (
+                    <FormField
+                        type="phone_number"
+                        register={register}
+                        showOverline
+                        error={errors.phone_number?.message}
+                    />
+                )}
+                {(page === "login" ||
+                    page === "create" ||
+                    page === "reset") && (
+                    <div style={{ position: "relative", marginBottom: "15px" }}>
+                        <FormField
+                            type="sms_captcha"
+                            register={register}
+                            showOverline
+                            error={errors.sms_captcha?.message}
+                        />
+                        <div
+                            style={{
+                                position: "absolute",
+                                right: "10px",
+                                bottom: "12px",
+                                cursor: "pointer",
+                            }}
+                            onClick={() =>
+                                getSmsCaptcha({
+                                    phone_number: getValues("phone_number"),
+                                    sms_captcha: getValues("sms_captcha"),
+                                })
+                            }>
+                            {time === 0 ? (
+                                <Text id="1" children="发送验证码" />
+                            ) : (
+                                <span>{time}s</span>
+                            )}
+                        </div>
+                    </div>
                 )}
                 {configuration?.features.invite_only && page === "create" && (
                     <FormField
@@ -224,7 +319,7 @@ export const Form = observer(({ page, callback }: Props) => {
                     />
                 </Button>
             </form>
-            {page === "create" && (
+            {/* {page === "create" && (
                 <span className={styles.create}>
                     <Text id="login.existing" />{" "}
                     <Link to="/login">
@@ -281,7 +376,7 @@ export const Form = observer(({ page, callback }: Props) => {
                         </Link>
                     </span>
                 </>
-            )}
+            )} */}
         </div>
     );
 });

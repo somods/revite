@@ -8,9 +8,10 @@ import { Text } from "preact-i18n";
 
 import { useApplicationState } from "../../mobx/State";
 
-import LocaleSelector from "../../components/common/LocaleSelector";
-import wideSVG from "/assets/wide.svg";
+// import wideSVG from "/assets/wide.svg";
+import wideSVG from "/assets/WechatIMG73.png";
 
+import LocaleSelector from "../../components/common/LocaleSelector";
 import { Titlebar } from "../../components/native/Titlebar";
 import { FormCreate } from "./forms/FormCreate";
 import { FormLogin } from "./forms/FormLogin";
@@ -77,17 +78,20 @@ export default observer(() => {
                             <div className={styles.socials}>
                                 <a
                                     href="https://github.com/revoltchat"
-                                    target="_blank" rel="noreferrer">
+                                    target="_blank"
+                                    rel="noreferrer">
                                     <Github size={24} />
                                 </a>
                                 <a
                                     href="https://twitter.com/revoltchat"
-                                    target="_blank" rel="noreferrer">
+                                    target="_blank"
+                                    rel="noreferrer">
                                     <Twitter size={24} />
                                 </a>
                                 <a
                                     href="https://mastodon.social/@revoltchat"
-                                    target="_blank" rel="noreferrer">
+                                    target="_blank"
+                                    rel="noreferrer">
                                     <Mastodon size={24} />
                                 </a>
                             </div>
@@ -116,7 +120,8 @@ export default observer(() => {
                         <a
                             className={styles.attribution}
                             href="https://unsplash.com/@fakurian"
-                            target="_blank" rel="noreferrer">
+                            target="_blank"
+                            rel="noreferrer">
                             <Text id="general.image_by" /> &lrm;@fakurian &rlm;·
                             unsplash.com
                         </a>

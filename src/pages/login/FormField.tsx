@@ -11,7 +11,9 @@ type FieldType =
     | "username"
     | "password"
     | "invite"
-    | "current_password";
+    | "current_password"
+    | "sms_captcha"
+    | "phone_number";
 
 type Props = Omit<JSX.HTMLAttributes<HTMLInputElement>, "children" | "as"> & {
     type: FieldType;
@@ -34,16 +36,26 @@ export default function FormField({
             {showOverline && (
                 <Category compact>
                     <I18nError error={error}>
-                        <Text id={`login.${type}`} />
+                        {type === "phone_number" ? (
+                            <Text id="1" children="手机号" />
+                        ) : type === "sms_captcha" ? (
+                            <Text id="1" children="验证码" />
+                        ) : (
+                            <Text id={`login.${type}`} />
+                        )}
                     </I18nError>
                 </Category>
             )}
             <Localizer>
                 <InputBox
                     placeholder={
-                        (
+                        (type === "phone_number" ? (
+                            <Text id="111" children="请输入手机号" />
+                        ) : type === "sms_captcha" ? (
+                            <Text id="111" children="请输入验证码" />
+                        ) : (
                             <Text id={`login.enter.${type}`} />
-                        ) as unknown as string
+                        )) as unknown as string
                     }
                     name={
                         type === "current_password" ? "password" : name ?? type
@@ -86,6 +98,25 @@ export default function FormField({
                                           ? "TooShort"
                                           : value.length > 32
                                           ? "TooLong"
+                                          : undefined,
+                              }
+                            : type === "phone_number"
+                            ? {
+                                  required: "RequiredField",
+                                  pattern: {
+                                      value: /^1[3456789]\d{9}$/,
+                                      message: "InvalidPhoneNumber",
+                                  },
+                              }
+                            : type === "sms_captcha"
+                            ? {
+                                  validate: (value: string) =>
+                                      value.length === 0
+                                          ? "RequiredField"
+                                          : value.length < 4
+                                          ? "InvalidVerificationCode"
+                                          : value.length > 4
+                                          ? "InvalidVerificationCode"
                                           : undefined,
                               }
                             : { required: "RequiredField" },
