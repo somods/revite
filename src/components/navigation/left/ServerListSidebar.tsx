@@ -19,13 +19,6 @@ export default observer(() => {
     const state = useApplicationState();
     const { server: server_id } = useParams<{ server?: string }>();
 
-    console.log(
-        111,
-        import.meta.env.VITE_API_URL,
-        import.meta.env.VITE_SOMODS_API_URL,
-        IS_REVOLT,
-    );
-
     const createServer = useCallback(
         () =>
             modalController.push({
@@ -43,7 +36,7 @@ export default observer(() => {
             home={state.layout.getLastHomePath}
             servers={state.ordering.orderedServers}
             reorder={state.ordering.reorderServer}
-            showDiscovery={IS_REVOLT}
+            showDiscovery={true}
         />
     );
 });
