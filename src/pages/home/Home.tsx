@@ -23,10 +23,9 @@ import { isTouchscreenDevice } from "../../lib/isTouchscreenDevice";
 
 import { useApplicationState } from "../../mobx/State";
 
-// import wideSVG from "/assets/wide.svg";
-import wideSVG from "/assets/WechatIMG73.png";
+import wideSVG from "/assets/wide.svg";
 
-// import wideSVG from "/assets/WechatIMG73.png";
+// import wideSVG from "/assets/wide.png";
 import { PageHeader } from "../../components/ui/Header";
 import { useClient } from "../../controllers/client/ClientController";
 import { modalController } from "../../controllers/modals/ModalController";

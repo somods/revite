@@ -8,9 +8,9 @@ import { Text } from "preact-i18n";
 
 import { useApplicationState } from "../../mobx/State";
 
-// import wideSVG from "/assets/wide.svg";
-import wideSVG from "/assets/WechatIMG73.png";
+import wideSVG from "/assets/wide.svg";
 
+// import wideSVG from "/assets/wide.png";
 import LocaleSelector from "../../components/common/LocaleSelector";
 import { Titlebar } from "../../components/native/Titlebar";
 import { FormCreate } from "./forms/FormCreate";
