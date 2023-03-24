@@ -141,7 +141,7 @@ export const Form = observer(({ page, callback }: Props) => {
     useEffect(() => {
         if (time === 60)
             timer.current = setInterval(() => setTime((time) => --time), 1000);
-        else if (time === 0) timer.current && clearInterval(timer.current);
+        else if (time <= 0) timer.current && clearInterval(timer.current);
     }, [time]);
     /**
      *  get captcha
@@ -286,7 +286,7 @@ export const Form = observer(({ page, callback }: Props) => {
                                     sms_captcha: getValues("sms_captcha"),
                                 })
                             }>
-                            {time === 0 ? (
+                            {time <= 0 ? (
                                 <Text id="1" children="发送验证码" />
                             ) : (
                                 <span>{time}s</span>
