@@ -134,12 +134,12 @@ export default observer(() => {
                                         description={
                                             <Text id="app.home.discover_desc" />
                                         }>
-                                        <Text id="app.home.discover" />
+                                        <Text id="123" children="探索" />
                                     </CategoryButton>
                                 </a>
                             </Link>
 
-                            {client.servers.get(
+                            {/* {client.servers.get(
                                 "01F7ZSBSFHQ8TA81725KQCSDDP",
                             ) ? (
                                 <Link to="/server/01F7ZSBSFHQ8TA81725KQCSDDP">
@@ -197,7 +197,7 @@ export default observer(() => {
                                     icon={<Cog size={32} />}>
                                     <Text id="app.home.settings" />
                                 </CategoryButton>
-                            </Link>
+                            </Link> */}
                         </div>
                         {isDecember && (
                             <a href="#" onClick={toggleSeasonalTheme}>

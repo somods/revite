@@ -11,6 +11,8 @@ import { observer } from "mobx-react-lite";
 import { useHistory } from "react-router-dom";
 import styled, { css } from "styled-components/macro";
 
+import { useEffect } from "preact/hooks";
+
 import { IconButton } from "@revoltchat/ui";
 
 import { chainedDefer, defer } from "../../../lib/defer";
@@ -168,6 +170,25 @@ const VoiceActions = observer(
             return null;
 
         if (voiceState.status >= VoiceStatus.READY) {
+            // Enable or disable voice shortcut keys
+            useEffect(() => {
+                const onKeyDown = async (event: KeyboardEvent) => {
+                    if (event.ctrlKey && event.keyCode === 192) {
+                        if (voiceState.roomId === channel._id) {
+                            voiceState.disconnect();
+                        } else {
+                            await voiceState.loadVoice();
+                            voiceState.disconnect();
+                            voiceState.connect(channel);
+                            console.log(voiceState);
+                        }
+                    }
+                };
+                window.addEventListener("keydown", onKeyDown); // 添加全局事件
+                return () => {
+                    window.removeEventListener("keydown", onKeyDown); // 销毁
+                };
+            });
             if (voiceState.roomId === channel._id) {
                 return (
                     <IconButton onClick={voiceState.disconnect}>

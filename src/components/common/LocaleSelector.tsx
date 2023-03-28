@@ -10,21 +10,23 @@ import { Language, Languages } from "../../../external/lang/Languages";
  */
 export default function LocaleSelector() {
     const locale = useApplicationState().locale;
+    locale.setLanguage("zh_Hans");
 
     return (
-        <ComboBox
-            value={locale.getLanguage()}
-            onChange={(e) =>
-                locale.setLanguage(e.currentTarget.value as Language)
-            }>
-            {Object.keys(Languages).map((x) => {
-                const l = Languages[x as keyof typeof Languages];
-                return (
-                    <option value={x} key={x}>
-                        {l.emoji} {l.display}
-                    </option>
-                );
-            })}
-        </ComboBox>
+        <></>
+        // <ComboBox
+        //     value={locale.getLanguage()}
+        //     onChange={(e) =>
+        //         locale.setLanguage(e.currentTarget.value as Language)
+        //     }>
+        //     {Object.keys(Languages).map((x) => {
+        //         const l = Languages[x as keyof typeof Languages];
+        //         return (
+        //             <option value={x} key={x}>
+        //                 {l.emoji} {l.display}
+        //             </option>
+        //         );
+        //     })}
+        // </ComboBox>
     );
 }

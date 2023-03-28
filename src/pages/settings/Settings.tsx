@@ -174,11 +174,11 @@ export default observer(() => {
                     icon: <Bell size={20} />,
                     title: <Text id="app.settings.pages.notifications.title" />,
                 },
-                {
-                    id: "language",
-                    icon: <Globe size={20} />,
-                    title: <Text id="app.settings.pages.language.title" />,
-                },
+                // {
+                //     id: "language",
+                //     icon: <Globe size={20} />,
+                //     title: <Text id="app.settings.pages.language.title" />,
+                // },
                 {
                     id: "sync",
                     icon: <SyncIcon size={20} />,

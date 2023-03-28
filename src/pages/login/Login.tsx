@@ -10,6 +10,7 @@ import { useApplicationState } from "../../mobx/State";
 
 // import wideSVG from "/assets/wide.svg";
 import wideSVG from "/assets/wide.png";
+
 import LocaleSelector from "../../components/common/LocaleSelector";
 import { Titlebar } from "../../components/native/Titlebar";
 import { FormCreate } from "./forms/FormCreate";
@@ -73,7 +74,7 @@ export default observer(() => {
                     {/*<div className={styles.loginQR}></div>*/}
                     {/*</div>*/}
                     <div className={styles.bottom}>
-                        <div className={styles.links}>
+                        {/* <div className={styles.links}>
                             <div className={styles.socials}>
                                 <a
                                     href="https://github.com/revoltchat"
@@ -123,7 +124,7 @@ export default observer(() => {
                             rel="noreferrer">
                             <Text id="general.image_by" /> &lrm;@fakurian &rlm;·
                             unsplash.com
-                        </a>
+                        </a> */}
                     </div>
                 </div>
             </div>
