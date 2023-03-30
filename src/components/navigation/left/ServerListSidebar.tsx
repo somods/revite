@@ -1,9 +1,5 @@
-//
-import { Compass } from "@styled-icons/boxicons-solid";
-import Tippy, { TippyProps } from "@tippyjs/react";
 import { observer } from "mobx-react-lite";
 import { useParams } from "react-router-dom";
-import { useLocation, Link } from "react-router-dom";
 
 import { useCallback } from "preact/hooks";
 
@@ -32,33 +28,16 @@ export default observer(() => {
     );
 
     return (
-        <>
-            <ServerList
-                client={client}
-                active={server_id}
-                createServer={createServer}
-                permit={state.notifications}
-                home={state.layout.getLastHomePath}
-                servers={state.ordering.orderedServers}
-                reorder={state.ordering.reorderServer}
-                showDiscovery={false}
-            />
-            <Link
-                to="/discover"
-                style={{
-                    position: "absolute",
-                    top: "183px",
-                    left: "12px",
-                }}>
-                <Tippy
-                    animation="shift-away"
-                    placement="right"
-                    content="Discover">
-                    <div>
-                        <Compass size={32} />
-                    </div>
-                </Tippy>
-            </Link>
-        </>
+        <ServerList
+            id="44444"
+            client={client}
+            active={server_id}
+            createServer={createServer}
+            permit={state.notifications}
+            home={state.layout.getLastHomePath}
+            servers={state.ordering.orderedServers}
+            reorder={state.ordering.reorderServer}
+            showDiscovery={true}
+        />
     );
 });

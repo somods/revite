@@ -14,13 +14,10 @@ export function Account() {
         <div className={styles.user}>
             <EditAccount />
             <hr />
-
             {/* <MultiFactorAuthentication />
             <hr /> */}
-
             <AccountManagement />
             <hr />
-
             <Tip>
                 <span>
                     <Text id="app.settings.tips.account.a" />

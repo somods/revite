@@ -172,7 +172,7 @@ export const Profile = observer(() => {
                 onFocus={onFocus}
                 onBlur={onBlur}
             />
-            <div className={styles.markdown}>
+            {/* <div className={styles.markdown}>
                 <Markdown size="24" />
                 <h5>
                     Descriptions support Markdown formatting,{" "}
@@ -184,7 +184,7 @@ export const Profile = observer(() => {
                     </a>
                     .
                 </h5>
-            </div>
+            </div> */}
             <p>
                 <Button
                     palette="secondary"

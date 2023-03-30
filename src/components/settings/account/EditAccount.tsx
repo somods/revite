@@ -38,8 +38,8 @@ export default observer(() => {
             {(
                 [
                     ["username", client.user!.username, At],
-                    ["email", email, Envelope],
-                    ["password", "•••••••••", Key],
+                    // ["email", email, Envelope],
+                    // ["password", "•••••••••", Key],
                 ] as const
             ).map(([field, value, Icon]) => (
                 <CategoryButton

@@ -158,11 +158,11 @@ export default observer(() => {
                     icon: <Speaker size={20} />,
                     title: <Text id="app.settings.pages.audio.title" />,
                 },
-                {
-                    id: "appearance",
-                    icon: <Palette size={20} />,
-                    title: <Text id="app.settings.pages.appearance.title" />,
-                },
+                // {
+                //     id: "appearance",
+                //     icon: <Palette size={20} />,
+                //     title: <Text id="app.settings.pages.appearance.title" />,
+                // },
                 {
                     id: "plugins",
                     icon: <Plug size={20} />,
@@ -202,11 +202,11 @@ export default observer(() => {
                 //     icon: <Bot size={20} />,
                 //     title: <Text id="app.settings.pages.bots.title" />,
                 // },
-                {
-                    id: "feedback",
-                    icon: <Megaphone size={20} />,
-                    title: <Text id="app.settings.pages.feedback.title" />,
-                },
+                // {
+                //     id: "feedback",
+                //     icon: <Megaphone size={20} />,
+                //     title: <Text id="app.settings.pages.feedback.title" />,
+                // },
             ]}
             children={
                 <Switch>

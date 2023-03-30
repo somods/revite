@@ -93,7 +93,7 @@ export const Overview = observer(({ server }: Props) => {
                     if (!changed) setChanged(true);
                 }}
             />
-            <div className={styles.markdown}>
+            {/* <div className={styles.markdown}>
                 <Markdown size="24" />
                 <h5>
                     {"Server descriptions support Markdown formatting. "}
@@ -105,7 +105,7 @@ export const Overview = observer(({ server }: Props) => {
                     </a>
                     {"."}
                 </h5>
-            </div>
+            </div> */}
             <hr />
             <h3>
                 <Text id="app.main.servers.custom_banner" />

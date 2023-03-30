@@ -219,7 +219,7 @@ export default function App() {
                             <Route path="/friends" component={Friends} />
                             <Route path="/open/:id" component={Open} />
                             <Route path="/bot/:id" component={InviteBot} />
-                            <Route path="/" component={Home} />
+                            {/* <Route path="/" component={Home} /> */}
                         </Switch>
                     </Routes>
                     <ContextMenus />

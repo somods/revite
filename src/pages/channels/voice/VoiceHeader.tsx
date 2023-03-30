@@ -10,7 +10,7 @@ import { observer } from "mobx-react-lite";
 import styled from "styled-components/macro";
 
 import { Text } from "preact-i18n";
-import { useMemo } from "preact/hooks";
+import { useMemo, useEffect } from "preact/hooks";
 
 import { Button } from "@revoltchat/ui";
 
@@ -78,6 +78,12 @@ const VoiceBase = styled.div`
         justify-content: center;
         gap: 10px;
     }
+    .shortcutkey {
+        font-size: 12px;
+        text-align: center;
+        margin-top: 14px;
+        color: #b6b6b6;
+    }
 `;
 
 export default observer(({ id }: Props) => {
@@ -91,6 +97,26 @@ export default observer(({ id }: Props) => {
         return keys.map((key) => client.users.get(key));
         // eslint-disable-next-line
     }, [keys]);
+    // Enable or disable voice shortcut keys
+    useEffect(() => {
+        const onKeyDown = async (event: KeyboardEvent) => {
+            if (
+                event.ctrlKey &&
+                event.keyCode === 192 &&
+                voiceState.status === VoiceStatus.CONNECTED
+            ) {
+                if (voiceState.isProducing("audio")) {
+                    voiceState.stopProducing("audio");
+                } else {
+                    voiceState.startProducing("audio");
+                }
+            }
+        };
+        window.addEventListener("keydown", onKeyDown); // 添加全局事件
+        return () => {
+            window.removeEventListener("keydown", onKeyDown); // 销毁
+        };
+    });
 
     return (
         <VoiceBase>
@@ -174,6 +200,12 @@ export default observer(({ id }: Props) => {
                         </Button>
                     </Tooltip>
                 )}
+            </div>
+            <div className="shortcutkey">
+                <Microphone width={13} />
+                <span>
+                    麦克风快捷键“ CTRL + ~ ”如遇游戏快捷键冲突 请更改游戏内设置
+                </span>
             </div>
         </VoiceBase>
     );
