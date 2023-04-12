@@ -39,7 +39,11 @@ export default function BanMember({
                 },
             }}
             callback={async ({ reason }) =>
-                void (await member.server!.banUser(member._id.user, { reason }))
+                reason
+                    ? void (await member.server!.banUser(member._id.user, {
+                          reason,
+                      }))
+                    : new Promise((resolve, reject) => reject("请输入封禁原因"))
             }
             submit={{
                 palette: "error",

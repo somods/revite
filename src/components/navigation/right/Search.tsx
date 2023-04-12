@@ -99,9 +99,10 @@ export function SearchSidebar({ close }: Props) {
             <GenericSidebarList>
                 <SearchBase>
                     <Category>
-                        <Error
+                        {/* <Error
                             error={<a onClick={close}>« back to members</a>}
-                        />
+                        /> */}
+                        <Error error={<a onClick={close}>« 返回成员列表</a>} />
                     </Category>
                     <Category>
                         <Text id="app.main.channel.search.title" />

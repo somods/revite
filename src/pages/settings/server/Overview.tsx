@@ -125,10 +125,14 @@ export const Overview = observer(({ server }: Props) => {
                 <Text id="app.settings.server_pages.overview.system_messages" />
             </h3>
             {[
-                ["User Joined", "user_joined"],
-                ["User Left", "user_left"],
-                ["User Kicked", "user_kicked"],
-                ["User Banned", "user_banned"],
+                // ["User Joined", "user_joined"],
+                // ["User Left", "user_left"],
+                // ["User Kicked", "user_kicked"],
+                // ["User Banned", "user_banned"],
+                ["用户加入", "user_joined"],
+                ["用户离开", "user_left"],
+                ["用户被踢", "user_kicked"],
+                ["用户禁止", "user_banned"],
             ].map(([i18n, key]) => (
                 // ! FIXME: temporary code just so we can expose the options
                 <p

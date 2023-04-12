@@ -20,18 +20,19 @@ export default function CreateServer({
     return (
         <ModalForm
             {...props}
-            title={<Text id="app.main.servers.create" />}
-            description={
-                <div>
-                    By creating this server, you agree to the{" "}
-                    <a
-                        href="https://revolt.chat/aup"
-                        target="_blank"
-                        rel="noreferrer">
-                        Acceptable Use Policy.
-                    </a>
-                </div>
-            }
+            title={<Text id="" />}
+            // title={<Text id="app.main.servers.create" />}
+            // description={
+            //     <div>
+            //         By creating this server, you agree to the{" "}
+            //         <a
+            //             href="https://revolt.chat/aup"
+            //             target="_blank"
+            //             rel="noreferrer">
+            //             Acceptable Use Policy.
+            //         </a>
+            //     </div>
+            // }
             schema={{
                 name: "text",
             }}
