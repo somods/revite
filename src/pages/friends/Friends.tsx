@@ -78,7 +78,8 @@ export default observer(() => {
                         </IconButton>
                     </Tooltip>
                     <div className={styles.divider} />*/}
-                    <Tooltip content={"Create Group"} placement="bottom">
+                    {/* <Tooltip content={"Create Group"} placement="bottom"> */}
+                    <Tooltip content={"创建群组"} placement="bottom">
                         <IconButton
                             onClick={() =>
                                 modalController.push({
@@ -88,7 +89,8 @@ export default observer(() => {
                             <MessageAdd size={24} />
                         </IconButton>
                     </Tooltip>
-                    <Tooltip content={"Add Friend"} placement="bottom">
+                    {/* <Tooltip content={"Add Friend"} placement="bottom"> */}
+                    <Tooltip content={"添加好友"} placement="bottom">
                         <IconButton
                             onClick={() =>
                                 modalController.push({

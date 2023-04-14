@@ -12,6 +12,7 @@ import { Message as MessageObject } from "revolt.js";
 import styled from "styled-components";
 
 import { openContextMenu } from "preact-context-menu";
+import { Text } from "preact-i18n";
 import { useEffect, useState } from "preact/hooks";
 
 import { internalEmit } from "../../../../lib/eventEmitter";
@@ -109,7 +110,8 @@ export const MessageOverlayBar = observer(
         return (
             <OverlayBar>
                 {message.channel?.havePermission("SendMessage") && (
-                    <Tooltip content="Reply">
+                    <Tooltip
+                        content={<Text id="app.context_menu.reply_message" />}>
                         <Entry
                             onClick={() =>
                                 internalEmit("ReplyBar", "add", message)
@@ -125,7 +127,7 @@ export const MessageOverlayBar = observer(
                             open={reactionsOpen}
                             setOpen={setReactionsOpen}
                             message={message}>
-                            <Tooltip content="React">
+                            <Tooltip content="回应">
                                 <Entry>
                                     <HappyBeaming size={18} />
                                 </Entry>
@@ -134,7 +136,13 @@ export const MessageOverlayBar = observer(
                     )}
 
                 {isAuthor && (
-                    <Tooltip content="Edit">
+                    <Tooltip
+                        content={
+                            <Text
+                                id="app.settings.actions.edit"
+                                fields={{ name: "" }}
+                            />
+                        }>
                         <Entry
                             onClick={() =>
                                 internalEmit(
@@ -150,7 +158,10 @@ export const MessageOverlayBar = observer(
                 {isAuthor ||
                 (message.channel &&
                     message.channel.havePermission("ManageMessages")) ? (
-                    <Tooltip content="Delete">
+                    <Tooltip
+                        content={
+                            <Text id="app.special.modals.actions.delete" />
+                        }>
                         <Entry
                             onClick={(e) =>
                                 e.shiftKey
@@ -164,7 +175,7 @@ export const MessageOverlayBar = observer(
                         </Entry>
                     </Tooltip>
                 ) : undefined}
-                <Tooltip content="More">
+                <Tooltip content="更多">
                     <Entry
                         onClick={() =>
                             openContextMenu("Menu", {
@@ -179,7 +190,11 @@ export const MessageOverlayBar = observer(
                 {extraActions && (
                     <>
                         <Divider />
-                        <Tooltip content="Mark as Unread">
+
+                        <Tooltip
+                            content={
+                                <Text id="app.context_menu.mark_unread" />
+                            }>
                             <Entry
                                 onClick={() => {
                                     // ! FIXME: deduplicate this code with ctx menu
@@ -207,7 +222,11 @@ export const MessageOverlayBar = observer(
                         </Tooltip>
                         <Tooltip
                             content={
-                                copied === "link" ? "Copied!" : "Copy Link"
+                                copied === "link" ? (
+                                    "已复制!"
+                                ) : (
+                                    <Text id="app.context_menu.copy_link" />
+                                )
                             }
                             hideOnClick={false}>
                             <Entry
@@ -219,7 +238,13 @@ export const MessageOverlayBar = observer(
                             </Entry>
                         </Tooltip>
                         <Tooltip
-                            content={copied === "id" ? "Copied!" : "Copy ID"}
+                            content={
+                                copied === "id" ? (
+                                    "已复制!"
+                                ) : (
+                                    <Text id="app.context_menu.copy_mid" />
+                                )
+                            }
                             hideOnClick={false}>
                             <Entry
                                 onClick={() => {

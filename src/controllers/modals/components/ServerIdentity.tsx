@@ -125,7 +125,7 @@ export default observer(
                             />
                         </Column>
                         <Column grow>
-                            <Category compact>Preview</Category>
+                            <Category compact>预览</Category>
                             <Preview>
                                 <Message message={message} head />
                             </Preview>

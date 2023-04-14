@@ -35,7 +35,8 @@ export default function ServerInfo({
                         });
                         return true;
                     },
-                    children: "Edit Identity",
+                    // children: "Edit Identity",
+                    children: <Text id="app.context_menu.edit_identity" />,
                     palette: "primary",
                 },
                 {

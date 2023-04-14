@@ -167,20 +167,20 @@ export default observer(({ id }: Props) => {
                 )}
             </div>
             <div className="actions">
-                <Tooltip content={"Leave call"} placement={"top"}>
+                <Tooltip content={"断开"} placement={"top"}>
                     <Button palette="error" onClick={voiceState.disconnect}>
                         <PhoneOff width={20} />
                     </Button>
                 </Tooltip>
                 {voiceState.isProducing("audio") ? (
-                    <Tooltip content={"Mute microphone"} placement={"top"}>
+                    <Tooltip content={"麦克风静音"} placement={"top"}>
                         <Button
                             onClick={() => voiceState.stopProducing("audio")}>
                             <Microphone width={20} />
                         </Button>
                     </Tooltip>
                 ) : (
-                    <Tooltip content={"Unmute microphone"} placement={"top"}>
+                    <Tooltip content={"取消麦克风静音"} placement={"top"}>
                         <Button
                             onClick={() => voiceState.startProducing("audio")}>
                             <MicrophoneOff width={20} />
@@ -188,13 +188,13 @@ export default observer(({ id }: Props) => {
                     </Tooltip>
                 )}
                 {voiceState.isDeaf() ? (
-                    <Tooltip content={"Undeafen"} placement={"top"}>
+                    <Tooltip content={"开启声音"} placement={"top"}>
                         <Button onClick={() => voiceState.stopDeafen()}>
                             <VolumeMute width={20} />
                         </Button>
                     </Tooltip>
                 ) : (
-                    <Tooltip content={"Deafen"} placement={"top"}>
+                    <Tooltip content={"关闭声音"} placement={"top"}>
                         <Button onClick={() => voiceState.startDeafen()}>
                             <VolumeFull width={20} />
                         </Button>
