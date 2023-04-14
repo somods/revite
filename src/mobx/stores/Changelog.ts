@@ -58,10 +58,10 @@ export default class Changelog implements Store, Persistent<Data>, Syncable {
      */
     checkForUpdates() {
         if (this.viewed < latestChangelog) {
-            modalController.push({
-                type: "changelog",
-                initial: latestChangelog,
-            });
+            // modalController.push({
+            //     type: "changelog",
+            //     initial: latestChangelog,
+            // });
 
             runInAction(() => {
                 this.viewed = latestChangelog;
